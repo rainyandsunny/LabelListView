@@ -45,6 +45,7 @@ public class LabelListView extends RelativeLayout {
         mHeight = ViewUtil.getSize(heightMeasureSpec, HEIGHT);
         setMeasuredDimension(mWidth,mHeight);
         if(mIsnotReady){
+
             mTvIndicator = new LabelTextView(mContext);
             mTvIndicator.setmTextSize(ViewUtil.dip2px(mContext,15));
             mTvIndicator.setmLabels(mIndicatorLabel);

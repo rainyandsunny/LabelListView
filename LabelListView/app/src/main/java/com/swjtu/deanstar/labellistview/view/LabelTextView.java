@@ -12,7 +12,6 @@ import com.swjtu.deanstar.labellistview.R;
 import com.swjtu.deanstar.labellistview.util.ViewUtil;
 
 /**
- *
  * 好友列表右侧指示器
  * Created by yhp5210 on 2017/3/20.
  */
@@ -55,7 +54,6 @@ public class LabelTextView extends View {
 
     public void setmLabels(String mLabels) {
         this.mLabels = mLabels;
-        invalidate();
     }
 
     public int getmTextSize() {
@@ -72,19 +70,20 @@ public class LabelTextView extends View {
         setBackground(getResources().getDrawable(R.drawable.headerbackground));
         mPaint.setTextSize(mTextSize);
         if (null != mLabels) {
-            float x, y,yStep;
+            float x, y, yStep;
             int len = mLabels.length();
 
-            x = mWidth  * 0.5f;
+            x = mWidth * 0.5f;
             y = mHeight * 1.0f / len;
             yStep = mHeight * 1.0f / len;
-            for (int i = 0; i < mLabels.length(); i++) {
+            for (int i = 0; i < len; i++) {
 
-                if(0 != i){
+                if (0 != i) {
                     y += yStep;
                 }
                 String indicator = Character.toString(mLabels.charAt(i));
-                Log.d(TAG,"x = " + x + "y = " + y + "mWidth = " + mWidth + "mHeight = " + mHeight + "len = " + len);
+                Log.d(TAG, "x = " + x + "y = " + y + "mWidth = "
+                        + mWidth + "mHeight = " + mHeight + "len = " + len);
                 canvas.drawText(indicator, x, y, mPaint);
             }
             canvas.save();
@@ -110,7 +109,26 @@ public class LabelTextView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        return super.onTouchEvent(event);
+
+        int action = event.getAction();
+        switch (action) {
+
+            case MotionEvent.ACTION_DOWN: {
+                Log.d(TAG, "action_down");
+            }
+            break;
+            case MotionEvent.ACTION_MOVE: {
+                Log.d(TAG, "action_move");
+            }
+            break;
+            case MotionEvent.ACTION_UP: {
+                Log.d(TAG, "action_up");
+            }
+            break;
+
+        }
+
+        return true;
     }
 
 
