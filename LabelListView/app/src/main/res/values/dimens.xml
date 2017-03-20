@@ -8,4 +8,12 @@
     <dimen name="indicatorSize">80dp</dimen>
     <dimen name="indicatorCornerRadius">8dp</dimen>
     <dimen name="indicatorTextSize">20sp</dimen>
+
+
+    <!--好友列表资源-->
+    <dimen name="friendListTextSize">18sp</dimen>
+    <dimen name="friendLividerHeight">60dp</dimen>
+    <dimen name="nameMarginLeft">10dp</dimen>
+    <dimen name="iconMarginTopAndBottom">10dp</dimen>
+    <dimen name="iconSize">40dp</dimen>
 </resources>

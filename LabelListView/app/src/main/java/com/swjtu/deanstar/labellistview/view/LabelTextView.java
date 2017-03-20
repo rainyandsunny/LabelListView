@@ -28,12 +28,14 @@ public class LabelTextView extends View {
     private int mTextSize = 30;
     private Paint mPaint;
     private Context mContext;
+    private View mParentView;
 
 
-    public LabelTextView(Context context) {
+    public LabelTextView(Context context,View view) {
         super(context);
         initResources();
         mContext = context;
+        mParentView = view;
     }
 
     public LabelTextView(Context context, AttributeSet attrs) {
@@ -82,8 +84,8 @@ public class LabelTextView extends View {
                     y += yStep;
                 }
                 String indicator = Character.toString(mLabels.charAt(i));
-                Log.d(TAG, "x = " + x + "y = " + y + "mWidth = "
-                        + mWidth + "mHeight = " + mHeight + "len = " + len);
+                /*Log.d(TAG, "x = " + x + "y = " + y + "mWidth = "
+                        + mWidth + "mHeight = " + mHeight + "len = " + len);*/
                 canvas.drawText(indicator, x, y, mPaint);
             }
             canvas.save();
@@ -111,6 +113,10 @@ public class LabelTextView extends View {
     public boolean onTouchEvent(MotionEvent event) {
 
         int action = event.getAction();
+        float y = event.getY();
+        if(null == mLabels){
+            return false;
+        }
         switch (action) {
 
             case MotionEvent.ACTION_DOWN: {
@@ -119,6 +125,13 @@ public class LabelTextView extends View {
             break;
             case MotionEvent.ACTION_MOVE: {
                 Log.d(TAG, "action_move");
+                int position = (int) (y / (mHeight / mLabels.length()));
+                if(position < 0){
+                    position = 0;
+                }else if(position >= mLabels.length()){
+                    position = mLabels.length() - 1;
+                }
+                ((UpadateStatus)(mParentView)).updateIndicator(position);
             }
             break;
             case MotionEvent.ACTION_UP: {
@@ -132,4 +145,9 @@ public class LabelTextView extends View {
     }
 
 
+
+    public interface UpadateStatus{
+
+        public void updateIndicator(int index);
+    }
 }

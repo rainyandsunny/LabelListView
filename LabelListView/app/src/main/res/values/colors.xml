@@ -5,4 +5,11 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="indicatorcolor">#ff808080</color>
+    <color name="indicatorwhiltcolor">#00ffffff</color>
+
+
+
+    <!--好友列表用到的资源-->
+    <color name="blankbackground">#ebebeb</color>
+    <color name="blankfontcolor">#a3a3a3</color>
 </resources>
