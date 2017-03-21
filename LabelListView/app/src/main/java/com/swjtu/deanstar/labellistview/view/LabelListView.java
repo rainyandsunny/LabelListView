@@ -2,9 +2,7 @@ package com.swjtu.deanstar.labellistview.view;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -108,7 +106,7 @@ public class LabelListView extends RelativeLayout implements LabelTextView.Upada
     class FriendAdaper extends BaseAdapter {
 
         private static final int COUNT = 2;
-        private static final int FRIEND_TYPE = 1;
+        private static final int DATA_TYPE = 1;
         private static final int DIVIDER_TYPE = 2;
         private List<ListDataItem> friendListItems;
         private DataViewHolder dataViewHolder;
@@ -140,7 +138,7 @@ public class LabelListView extends RelativeLayout implements LabelTextView.Upada
 
             if (null == convertView) {
 
-                if (type == FRIEND_TYPE) {
+                if (type == DATA_TYPE) {
 
                     dataViewHolder = new DataViewHolder();
                     convertView = LayoutInflater.from(mContext)
@@ -161,7 +159,7 @@ public class LabelListView extends RelativeLayout implements LabelTextView.Upada
 
             }else{
 
-                if(type == FRIEND_TYPE){
+                if(type == DATA_TYPE){
 
                     dataViewHolder = (DataViewHolder) convertView.getTag();
                 }else if(type == DIVIDER_TYPE){
@@ -171,20 +169,22 @@ public class LabelListView extends RelativeLayout implements LabelTextView.Upada
 
             }
             ListDataItem item = friendListItems.get(position);
-            if (type == FRIEND_TYPE){
-                if (item.object instanceof Friend) {
-                    Friend friend = (Friend) (item.object);
-                    dataViewHolder.img.setImageBitmap(friend.getmIcon());
-                    dataViewHolder.title.setText(friend.getName());
-                }
+            if (type == DATA_TYPE){
+                /*if (item.object instanceof Friend) {*/
+                /*    Friend friend = (Friend) (item.object);*/
+                /*    dataViewHolder.img.setImageBitmap(friend.getmBitmap());*/
+                /*    dataViewHolder.title.setText(friend.getName());*/
+                /*}*/
 
             }else if(type == DIVIDER_TYPE){
 
-                if (item.object instanceof Divider) {
-a
-                    Divider divider = (Divider) (item.object);
-                    holder.title.setText(divider.getmLabel());
-                }
+                /*if (item.object instanceof Divider) {*/
+/*
+*/
+
+                /*    Divider divider = (Divider) (item.object);*/
+                /*    dividerViewHolder.label.setText(divider.getLabel());*/
+                /*}*/
             }
 
 
@@ -227,6 +227,11 @@ a
             this.index = index;
         }
 
+    }
+
+    public void setAdapter(FriendAdaper friendAdaper){
+
+        mContentListView.setAdapter(friendAdaper);
     }
 
 
