@@ -133,4 +133,30 @@ public class LabelListView extends RelativeLayout implements LabelTextView.Upada
         mContentListView.setAdapter(adapter);
     }
 
+    public class DataItem{
+
+        private int type;
+        private Object content;
+
+        public DataItem(Object content, int type) {
+            this.content = content;
+            this.type = type;
+        }
+
+        public Object getContent() {
+            return content;
+        }
+
+        public void setContent(Object content) {
+            this.content = content;
+        }
+
+        public int getType() {
+            return type;
+        }
+
+        public void setType(int type) {
+            this.type = type;
+        }
+    }
 }
