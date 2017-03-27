@@ -101,6 +101,12 @@ public class LabelTextView extends View {
         setMeasuredDimension(mWidth, mHeight);
     }
 
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+
+        Log.d(TAG,"dispatchTouchEvent" + super.dispatchTouchEvent(ev));
+        return super.dispatchTouchEvent(ev);
+    }
 
     public void initResources() {
 
@@ -121,6 +127,7 @@ public class LabelTextView extends View {
 
             case MotionEvent.ACTION_DOWN: {
                 Log.d(TAG, "action_down");
+                ((UpadateStatus)(mParentView)).showToast(true);
             }
             break;
             case MotionEvent.ACTION_MOVE: {
@@ -136,6 +143,7 @@ public class LabelTextView extends View {
             break;
             case MotionEvent.ACTION_UP: {
                 Log.d(TAG, "action_up");
+                ((UpadateStatus)(mParentView)).showToast(false);
             }
             break;
 
@@ -149,5 +157,7 @@ public class LabelTextView extends View {
     public interface UpadateStatus{
 
         public void updateIndicator(int index);
+        public void showToast(boolean status);
     }
+
 }
