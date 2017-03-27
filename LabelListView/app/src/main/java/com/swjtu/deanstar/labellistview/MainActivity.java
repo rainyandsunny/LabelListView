@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import com.swjtu.deanstar.labellistview.view.LabelListView;
 
+import java.util.List;
+
 public class MainActivity extends Activity {
 
     private LabelListView mLabelListView;
@@ -27,6 +29,11 @@ public class MainActivity extends Activity {
         private static final int COUNT = 2;
         private static final int DATA_TYPE = 1;
         private static final int DIVIDER_TYPE = 2;
+        private List<Object> contents;
+
+        public DemoAdapter(List<Object> contents){
+            this.contents = contents;
+        }
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -46,14 +53,24 @@ public class MainActivity extends Activity {
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+            Object obj = contents.get(position);
+            if(DATA_TYPE == getItemViewType(position)){
 
+
+            }else if(DIVIDER_TYPE == getItemViewType(position)){
+
+            }
         }
 
         @Override
         public int getItemCount() {
-            return 0;
+            return contents.size();
         }
 
+        @Override
+        public int getItemViewType(int position) {
+            return super.getItemViewType(position);
+        }
 
         static class DataViewHolder extends RecyclerView.ViewHolder {
 
@@ -62,14 +79,19 @@ public class MainActivity extends Activity {
 
             public DataViewHolder(View itemView) {
                 super(itemView);
+                ivUserIcon = (ImageView) itemView.findViewById(R.id.ivicon);
+                tvUserName = (TextView) itemView.findViewById(R.id.tvname);
 
             }
         }
 
         static class DividerViewHolder extends RecyclerView.ViewHolder {
 
+            private TextView tvLabel;
+
             public DividerViewHolder(View itemView) {
                 super(itemView);
+                tvLabel = (TextView) itemView.findViewById(R.id.label);
             }
         }
 
