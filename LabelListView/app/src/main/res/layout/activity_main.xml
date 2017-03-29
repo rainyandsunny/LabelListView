@@ -10,7 +10,6 @@
     <com.swjtu.deanstar.labellistview.view.LabelListView
 
         android:id="@+id/listView"
-        android:background="@color/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

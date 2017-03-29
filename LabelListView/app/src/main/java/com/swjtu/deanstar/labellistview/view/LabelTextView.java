@@ -31,6 +31,7 @@ public class LabelTextView extends View {
     private View mParentView;
 
 
+
     public LabelTextView(Context context,View view) {
         super(context);
         initResources();
@@ -146,7 +147,6 @@ public class LabelTextView extends View {
                 ((UpadateStatus)(mParentView)).showToast(false);
             }
             break;
-
         }
 
         return true;

@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +16,12 @@ import com.swjtu.deanstar.labellistview.beans.Divider;
 import com.swjtu.deanstar.labellistview.beans.Friend;
 import com.swjtu.deanstar.labellistview.view.LabelListView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends Activity {
 
+    private static final String TAG ="MainActivity";
     private LabelListView mLabelListView;
     private List<LabelListView.DataItem> mContents;
     private RecyclerView.Adapter adapter;
@@ -36,6 +39,8 @@ public class MainActivity extends Activity {
 
         //3. 设置Adapter
         adapter = new DemoAdapter(mContents);
+        Log.d(TAG,"adapter=null" + (adapter == null));
+        Log.d(TAG,"mContents.size:" + mContents.size());
         mLabelListView.setAdapter(adapter);
     }
 
@@ -43,6 +48,7 @@ public class MainActivity extends Activity {
 
     public void getData(){
 
+        mContents = new ArrayList<>();
         for (int i = 0; i < 27; i++) {
 
             LabelListView.DataItem item = null;
@@ -79,9 +85,6 @@ public class MainActivity extends Activity {
 
     static class DemoAdapter extends RecyclerView.Adapter {
 
-        private static final int COUNT = 2;
-        private static final int DATA_TYPE = 1;
-        private static final int DIVIDER_TYPE = 2;
         private List<LabelListView.DataItem> contents;
 
         public DemoAdapter(List<LabelListView.DataItem> contents){
@@ -95,25 +98,25 @@ public class MainActivity extends Activity {
                     .inflate(R.layout.normalitem_layout, parent, false);
             View dividerView = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.divideritem_layout, parent, false);
-            if (viewType == DATA_TYPE) {
+            if (viewType == LabelListView.DataItem.DATA_TYPE) {
 
                 return new DataViewHolder(dataView);
-            } else if (viewType == DIVIDER_TYPE) {
+            } else{
                 return new DividerViewHolder(dividerView);
             }
-            return null;
+
         }
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-            Object obj = contents.get(position);
-            if(DATA_TYPE == getItemViewType(position)){
+            Object obj = contents.get(position).getContent();
+            if(LabelListView.DataItem.DATA_TYPE == getItemViewType(position)){
                 Friend friend = (Friend)obj;
                 DataViewHolder dataViewHolder = (DataViewHolder)holder;
                 dataViewHolder.tvUserName.setText(friend.getName());
                 dataViewHolder.ivUserIcon.setImageBitmap(friend.getIcon());
 
-            }else if(DIVIDER_TYPE == getItemViewType(position)){
+            }else if(LabelListView.DataItem.DIVIDER_TYPE == getItemViewType(position)){
                 Divider divider = (Divider)obj;
                 DividerViewHolder dividerViewHolder = (DividerViewHolder)holder;
                 dividerViewHolder.tvLabel.setText(divider.getLabel());
